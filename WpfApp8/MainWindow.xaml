@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfApp8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp8"
+        mc:Ignorable="d"
+        Title="ToDo" Height="450" Width="800"
+        >
+    <Grid Background="#ecf0f1">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Name="TaskList" ItemsSource="{DynamicResource ResourceKey=tasks}" Grid.Column="0" Grid.Row="1" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100" >Название</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Priority}" Width="100">Приоритет</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Deadline}" Width="100">Дедлайн</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Comment}" Width="150">Комментарий</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            
+        </ListView>
+        
+        <DockPanel Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" Background="#16a085" Height="20"></DockPanel>
+        <DockPanel Grid.Column="0" Grid.Row="1"></DockPanel>
+        <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+        <StackPanel Grid.Column="2" Grid.Row="1"  Background="#2980b9">
+            <Label  HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White"  >Название</Label>
+            <TextBox   Background="white" HorizontalContentAlignment="Stretch" Margin="10,0"></TextBox>
+            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" >Приоритет</Label>
+            <ComboBox SelectedIndex="0" Background="white" HorizontalContentAlignment="Stretch" Margin="10,0" Padding="5">
+                <ComboBoxItem >Low</ComboBoxItem>
+                <ComboBoxItem>Normal</ComboBoxItem>
+                <ComboBoxItem>High</ComboBoxItem>
+            </ComboBox>
+            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" >Дедлайн</Label>
+            <DatePicker Background="White" Text="Select a date" Margin="10,0"></DatePicker>
+            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" >Комментарий</Label>
+            <RichTextBox Height="120" Margin="10, 0"></RichTextBox>
+            <Button Content="Добавить" Margin="10,5" Background="#34495e"></Button>          
+        </StackPanel>
+        <DockPanel Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" Background="#16a085" Height="20"></DockPanel>
+    </Grid>
+    
+
+</Window>
