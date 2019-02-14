@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +17,21 @@ using System.Windows.Shapes;
 namespace WpfApp8
 {
 
-    class Task
-    {
-        public string Name { get; set; }
-        public string Priority { get; set; }
-        public DateTime Deadline { get; set; }
-        public string Comment { get; set; }
-    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Task> tasks = new List<Task>();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string richText = new TextRange(CommentBox.Document.ContentStart, CommentBox.Document.ContentEnd).Text;
+            tasks.Add(new Task(NameTextBox.Text, PriorityComboBox.Text, Deadline.SelectedDate.Value, richText));
         }
     }
 }

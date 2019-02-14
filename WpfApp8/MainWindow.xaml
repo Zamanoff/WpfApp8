@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp8"
         mc:Ignorable="d"
-        Title="ToDo" Height="450" Width="800"
+        Title="ToDo" Height="450" Width="800" ResizeMode="NoResize"
         >
     <Grid Background="#ecf0f1">
         <Grid.RowDefinitions >
@@ -19,7 +19,7 @@
             <ColumnDefinition Width="0.3*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView Name="TaskList" ItemsSource="{DynamicResource ResourceKey=tasks}" Grid.Column="0" Grid.Row="1" >
+        <ListView Name="TaskList" ItemsSource="{Binding Path=tasks}" Grid.Column="0" Grid.Row="1" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100" >Название</GridViewColumn>
@@ -28,30 +28,30 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Comment}" Width="150">Комментарий</GridViewColumn>
                 </GridView>
             </ListView.View>
-            
+
         </ListView>
-        
+
         <DockPanel Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" Background="#16a085" Height="20"></DockPanel>
         <DockPanel Grid.Column="0" Grid.Row="1"></DockPanel>
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
         <StackPanel Grid.Column="2" Grid.Row="1"  Background="#2980b9">
-            <Label  HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White"  >Название</Label>
-            <TextBox   Background="white" HorizontalContentAlignment="Stretch" Margin="10,0"></TextBox>
-            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" >Приоритет</Label>
-            <ComboBox SelectedIndex="0" Background="white" HorizontalContentAlignment="Stretch" Margin="10,0" Padding="5">
+            <Label  HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" Margin="5,0,0,0"  >Название</Label>
+            <TextBox x:Name="NameTextBox"   Background="white" HorizontalContentAlignment="Stretch" Margin="10,0"></TextBox>
+            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" Margin="5,0,0,0" >Приоритет</Label>
+            <ComboBox x:Name="PriorityComboBox" SelectedIndex="0" Background="white" HorizontalContentAlignment="Stretch" Margin="10,0" Padding="5">
                 <ComboBoxItem >Low</ComboBoxItem>
                 <ComboBoxItem>Normal</ComboBoxItem>
                 <ComboBoxItem>High</ComboBoxItem>
             </ComboBox>
-            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" >Дедлайн</Label>
-            <DatePicker Background="White" Text="Select a date" Margin="10,0"></DatePicker>
-            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" >Комментарий</Label>
-            <RichTextBox Height="120" Margin="10, 0"></RichTextBox>
-            <Button Content="Добавить" Margin="10,5" Background="#34495e"></Button>          
+            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" Margin="5,0,0,0" >Дедлайн</Label>
+            <DatePicker x:Name="Deadline" Background="White" Text="Select a date" Margin="10,0"></DatePicker>
+            <Label HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Foreground="White" Margin="5,0,0,0" >Комментарий</Label>
+            <RichTextBox x:Name="CommentBox" Height="120" Margin="10, 0"></RichTextBox>
+            <Button Content="Добавить" Margin="10,5" Background="#34495e" Click="Button_Click"></Button>
         </StackPanel>
         <DockPanel Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" Background="#16a085" Height="20"></DockPanel>
     </Grid>
-    
+
 
 </Window>
