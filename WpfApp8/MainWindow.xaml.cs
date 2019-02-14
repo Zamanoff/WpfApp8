@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -22,16 +23,17 @@ namespace WpfApp8
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Task> tasks = new List<Task>();
+        public ObservableCollection<Task> Tasks { get; set; } = new ObservableCollection<Task>(); 
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string richText = new TextRange(CommentBox.Document.ContentStart, CommentBox.Document.ContentEnd).Text;
-            tasks.Add(new Task(NameTextBox.Text, PriorityComboBox.Text, Deadline.SelectedDate.Value, richText));
+            Tasks.Add(new Task(NameTextBox.Text, PriorityComboBox.Text, Deadline.SelectedDate.Value, richText));
         }
     }
 }

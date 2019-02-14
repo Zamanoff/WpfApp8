@@ -19,17 +19,30 @@
             <ColumnDefinition Width="0.3*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView Name="TaskList" ItemsSource="{Binding Path=tasks}" Grid.Column="0" Grid.Row="1" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100" >Название</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Priority}" Width="100">Приоритет</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Deadline}" Width="100">Дедлайн</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Comment}" Width="150">Комментарий</GridViewColumn>
-                </GridView>
-            </ListView.View>
+        <ListBox  ItemsSource="{Binding Tasks}" Name="TaskList"  Grid.Column="0" Grid.Row="1" >
 
-        </ListView>
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+
+                <DataTemplate>
+
+                    <StackPanel Margin="10">
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        <TextBlock Text="{Binding Path=Priority}"/>
+                        <TextBlock Text="{Binding Path=Deadline}"  MinWidth="700"/>
+                        <TextBlock Text="{Binding Path=Comment}" MinWidth="700" HorizontalAlignment="Right"/>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
 
         <DockPanel Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" Background="#16a085" Height="20"></DockPanel>
         <DockPanel Grid.Column="0" Grid.Row="1"></DockPanel>
